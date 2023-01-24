@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login And Sing In</title>
+</head>
+<body>
+    <script>
+        var login = '<form class="Form" method="post" >'+
+                        '<button class="Sing" onclick="Login(true)"> <b> Login </b> </button>'+
+                        '<br><br><br><br><br><br>'+
+                        '<div class="inputBox">'+
+                            '<input type="text" required>'+
+                            '<label>Username</label> <i></i>'+
+                        '</div>'+
+                        '<div class="inputBox">'+
+                            '<input type="password" required >'+
+                            '<label>password</label> <i></i>'+
+                        '</div>'+
+                        '<div class="links">'+
+                            '<a href="#">Forgot password?</a> '+
+                            '<button class="Sing_Up" type="submit">Submit</button>'+
+                        '</div>'+
+                        '<button class="Login" onclick="Sing(false)"> <b> Sing In </b> </button>'+
+                    '</form>';
+        
+        var sing = '<form class="Form" method="post" name="SingForm" >'+
+                    '<button class="Sing" onclick="Sing(true)"> <b> Sing In </b> </button>'+
+                    '<br><br><br><br><br>'+
+                    '<div class="inputBox">'+
+                    '<input type="text" name="UserName" required>'+
+                    '<label>Username <span id="nameEr"></span></label> '+
+                    '</div>'+
+                    '<div class="inputBox">'+
+                        '<input type="password" name="p1" required>'+
+                        '<label>Password <span id="p1Er"></span></label> '+
+                        '</div>'+
+                        '<div class="inputBox">'+
+                            '<input type="password" name="p2" required>'+
+                            '<label>Re-Password <span id="p2Er"></span></label>'+
+                            '</div>'+
+                            '<div class="links">'+
+                                '<button class="Login" onclick="Login(false)" style="margin: 0px "> <b> Login </b> </button>'+
+                                '<button class="Sing_Up" type="submit" style="margin-right: 40px">Sing Up</button>'+
+                                '</div>'+
+                                '</form>';
+        
+                                var i=0;
+       function Sing(bool){
+            if(bool==false){
+                if(i==0){
+                    document.getElementById('box').innerHTML='<div class="Contain" id="C"></div>';
+                    
+                    i=1;
+                }
+                
+                document.getElementById('C').innerHTML=sing;
+             } else {
+                document.getElementById('box').innerHTML='<button class="Sing" onclick="Sing(false)"> <b> Sing In </b> </button>';
+                i=0;
+            }
+       }
+
+       function Login(bool){
+            if(bool==false){
+                if(i==0){
+                    document.getElementById('box').innerHTML='<div class="Contain" id="C"></div>';
+                    i=1;
+                }
+                document.getElementById('C').innerHTML=login;
+            } else {
+                document.getElementById('box').innerHTML='<button class="Sing" onclick="Login(false)"> <b> Login </b> </button>';
+                i=0;
+            }
+       }
+
+        /*function Controllo(questo){
+            if(questo==1){
+            var nome = document.SingForm.UserName.value;
+            var p1 = document.SingForm.p1.value;
+            var p2 = document.SingForm.p2.value;
+            
+
+
+                if(p1.length>=8){
+                    document.getElementById("p1Er").innerHTML="";
+                }
+
+                if(nome==null || nome=="") {
+                    document.getElementById("nameEr").innerHTML="     Name not valid";
+                    return false;
+                } else if(p1.length<8){
+                    document.getElementById("p1Er").innerHTML="    The Passwords must necessarily be at least 6 alphanumeric characters";
+                    return false;
+                } else if(p1!=p2){
+                    document.getElementById("p2Er").innerHTML="      The Passwords aren't similar!";
+                    return false;
+                }
+            }
+        }*/
+
+    </script>
+
+    <style>
+        *{
+            box-sizing: border-box;
+            margin:0;
+            padding: 0;
+        }
+
+        html{
+            height: 100%;
+            background: linear-gradient(135deg, rgb(125, 125, 125), rgb(40, 39, 39),rgb(16, 16, 16),rgb(7, 7, 7),rgb(0, 0, 0));
+        }
+
+
+        .Box{
+            margin: 150px auto 0;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .Sing{
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            margin: 30px auto 0 auto;
+            width: 250px;
+            padding: 20px;
+            font-size: 40px;
+            background: transparent;
+            border: none;
+            color: rgb(65, 244, 244);
+        }
+
+        .Contain{
+            position: relative;
+            width: 500px;
+            height: 500px;
+            background: #1c1c1c;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .Contain::before{
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(0deg, transparent, #f6f6f6, #45f3ff);
+            transform-origin: bottom right;
+            animation: Rot 6s linear infinite;
+        }
+        
+        .Contain::after{
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(0deg, transparent, #f6f6f6, #45f3ff);
+            transform-origin: bottom right;
+            animation: Rot 6s linear infinite;
+            animation-delay: -3s;
+        }
+
+        @keyframes Rot{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+
+        .Form{
+            background-color: #0c0c0c;
+            border-radius: 8px;
+            position: absolute;
+            inset: 2px;
+            z-index: 10;
+        }
+
+        .inputBox{
+            display: flex;
+            justify-content: center;
+            position: relative;
+            padding: 10px;
+            width: 300px;
+            margin: 20px 40px;
+        }
+
+        .inputBox input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: rgb(255, 255, 255);
+            margin-bottom: 15px;
+            border: none;
+            border-bottom: 1px solid rgb(65, 244, 244);
+            outline: none;
+            background: transparent;
+        }
+
+        .Form .inputBox input:focus ~ label,
+        .Form .inputBox input:valid ~ label {
+            top: -20px;
+            left: 0;
+            color: rgb(65, 244, 244);
+            font-size: 25px;
+        }
+
+        .Form .inputBox label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 20px;
+            color: #ffffff;
+            transition: 0.3s;
+        }
+
+        .links{
+            display: flex;
+            justify-content:left;
+            position: relative;
+            margin: 20px 40px;
+        }
+
+        a{
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        .Sing_Up{
+            margin-left: 150px;
+            border: none;
+            background: transparent;
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        .Login{
+            margin: 5px 40px;
+            border: none;
+            background: #00ffff;
+            border-radius: 15px;
+            width: 130px;
+            padding: 20px;
+            color: #000000;
+            font-size: 20px;
+        }
+    </style>
+    
+    <div class="Box" id="box">
+        <button class="Sing" onclick="Sing(false)"> <b> Sing In </b> </button>
+        <button class="Sing" onclick="Login(false)" style="margin-top: 100px;"> <b> Login </b> </button>
+        
+    </div>
+    
+</body>
+</html>
